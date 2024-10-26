@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// import  { StrictMode } from 'react'
+// import ReactDOM from 'react-dom/client'
+// import {
+//   Outlet,
+//   RouterProvider,
+//   createRouter,
+//   createRoute,
+//   createRootRoute,
+// } from '@tanstack/react-router'
+// import { TanStackRouterDevtools } from '@tanstack/router-devtools'
+// import { ThemeProvider } from "@/components/ThemeProvider"
 
-function App() {
-  const [count, setCount] = useState(0)
+// const rootRoute = createRootRoute({
+//   component: () => (
+//     <>
+//       <Outlet />
+//       <TanStackRouterDevtools />
+//     </>
+//   ),
+// })
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+// const indexRoute = createRoute({
+//   getParentRoute: () => rootRoute,
+//   path: '/',
+//   component: function Index() {
+//     return (
+//       <div className="p-2">
+//         <h3>Welcome Home!</h3>
+//       </div>
+//     )
+//   },
+// })
 
-export default App
+// const aboutRoute = createRoute({
+//   getParentRoute: () => rootRoute,
+//   path: '/about',
+//   component: function About() {
+//     return <div className="p-2">Hello from About!</div>
+//   },
+// })
+
+// const routeTree = rootRoute.addChildren([indexRoute, aboutRoute])
+
+// const router = createRouter({ routeTree })
+
+// declare module '@tanstack/react-router' {
+//   interface Register {
+//     router: typeof router
+//   }
+// }
+
+// const rootElement = document.getElementById('app')!
+// if (!rootElement.innerHTML) {
+//   const root = ReactDOM.createRoot(rootElement)
+//   root.render(          
+//   <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+//     <StrictMode>
+//       <RouterProvider router={router}  />
+//     </StrictMode>
+//     </ThemeProvider>
+
+//   )
+// }
