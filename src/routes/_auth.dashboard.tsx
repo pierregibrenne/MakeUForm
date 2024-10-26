@@ -5,6 +5,7 @@ import { AppSidebar } from "@/components/app-sidebar"
 
 export const Route = createFileRoute('/_auth/dashboard')({
   beforeLoad: ({ context }) => {
+        // @ts-ignore
     if (!context.auth.isAuthenticated) {
       throw redirect({
         to: '/login',

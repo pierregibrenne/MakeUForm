@@ -22,11 +22,11 @@ function LoginComp() {
 
     try {
       // Connexion avec Supabase
-      const { data, error } = await supabase.auth.signInWithPassword({
+      const { error } = await supabase.auth.signInWithPassword({
         email,
         password,
       });
-
+      
       if (error) {
         setError(error.message); // Affiche l'erreur si la connexion échoue
       } else {

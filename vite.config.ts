@@ -6,6 +6,7 @@ import { TanStackRouterVite } from '@tanstack/router-plugin/vite'
 export default defineConfig({
   plugins: [react(),
     TanStackRouterVite(),],
+      // @ts-ignore
     test: {
       globals: true,
       environment: 'jsdom', // pour tester les composants qui manipulent le DOM
