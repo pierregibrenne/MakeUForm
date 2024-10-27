@@ -39,8 +39,8 @@ const data = {
       items: [
        
         {
-          title: "Starred",
-          url: "#1",
+          title: "Start",
+          url: "/dashboard/start",
         }, 
         {
           title: "History",

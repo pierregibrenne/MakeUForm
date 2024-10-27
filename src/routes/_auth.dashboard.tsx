@@ -17,6 +17,8 @@ export const Route = createFileRoute('/_auth/dashboard')({
 })
 
 function DashboardPage() {
+    console.log('Rendering /_auth/dashboard')
+
   const auth = useAuth()
 
   return (

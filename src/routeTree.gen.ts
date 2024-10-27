@@ -14,6 +14,7 @@ import { createFileRoute } from '@tanstack/react-router'
 
 import { Route as rootRoute } from './routes/__root'
 import { Route as AuthDashboardImport } from './routes/_auth.dashboard'
+import { Route as AuthDashboardStartImport } from './routes/_auth.dashboard.start'
 
 // Create Virtual Routes
 
@@ -47,6 +48,11 @@ const IndexLazyRoute = IndexLazyImport.update({
 const AuthDashboardRoute = AuthDashboardImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AuthDashboardStartRoute = AuthDashboardStartImport.update({
+  path: '/start',
+  getParentRoute: () => AuthDashboardRoute,
 } as any)
 
 // Populate the FileRoutesByPath interface
@@ -88,17 +94,37 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardImport
       parentRoute: typeof rootRoute
     }
+    '/_auth/dashboard/start': {
+      id: '/_auth/dashboard/start'
+      path: '/start'
+      fullPath: '/dashboard/start'
+      preLoaderRoute: typeof AuthDashboardStartImport
+      parentRoute: typeof AuthDashboardImport
+    }
   }
 }
 
 // Create and export the route tree
+
+interface AuthDashboardRouteChildren {
+  AuthDashboardStartRoute: typeof AuthDashboardStartRoute
+}
+
+const AuthDashboardRouteChildren: AuthDashboardRouteChildren = {
+  AuthDashboardStartRoute: AuthDashboardStartRoute,
+}
+
+const AuthDashboardRouteWithChildren = AuthDashboardRoute._addFileChildren(
+  AuthDashboardRouteChildren,
+)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/about': typeof AboutLazyRoute
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
-  '/dashboard': typeof AuthDashboardRoute
+  '/dashboard': typeof AuthDashboardRouteWithChildren
+  '/dashboard/start': typeof AuthDashboardStartRoute
 }
 
 export interface FileRoutesByTo {
@@ -106,7 +132,8 @@ export interface FileRoutesByTo {
   '/about': typeof AboutLazyRoute
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
-  '/dashboard': typeof AuthDashboardRoute
+  '/dashboard': typeof AuthDashboardRouteWithChildren
+  '/dashboard/start': typeof AuthDashboardStartRoute
 }
 
 export interface FileRoutesById {
@@ -115,15 +142,29 @@ export interface FileRoutesById {
   '/about': typeof AboutLazyRoute
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
-  '/_auth/dashboard': typeof AuthDashboardRoute
+  '/_auth/dashboard': typeof AuthDashboardRouteWithChildren
+  '/_auth/dashboard/start': typeof AuthDashboardStartRoute
 }
 
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/login' | '/signup' | '/dashboard'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/login'
+    | '/signup'
+    | '/dashboard'
+    | '/dashboard/start'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/login' | '/signup' | '/dashboard'
-  id: '__root__' | '/' | '/about' | '/login' | '/signup' | '/_auth/dashboard'
+  to: '/' | '/about' | '/login' | '/signup' | '/dashboard' | '/dashboard/start'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/login'
+    | '/signup'
+    | '/_auth/dashboard'
+    | '/_auth/dashboard/start'
   fileRoutesById: FileRoutesById
 }
 
@@ -132,7 +173,7 @@ export interface RootRouteChildren {
   AboutLazyRoute: typeof AboutLazyRoute
   LoginLazyRoute: typeof LoginLazyRoute
   SignupLazyRoute: typeof SignupLazyRoute
-  AuthDashboardRoute: typeof AuthDashboardRoute
+  AuthDashboardRoute: typeof AuthDashboardRouteWithChildren
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -140,7 +181,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutLazyRoute: AboutLazyRoute,
   LoginLazyRoute: LoginLazyRoute,
   SignupLazyRoute: SignupLazyRoute,
-  AuthDashboardRoute: AuthDashboardRoute,
+  AuthDashboardRoute: AuthDashboardRouteWithChildren,
 }
 
 export const routeTree = rootRoute
@@ -175,7 +216,14 @@ export const routeTree = rootRoute
       "filePath": "signup.lazy.tsx"
     },
     "/_auth/dashboard": {
-      "filePath": "_auth.dashboard.tsx"
+      "filePath": "_auth.dashboard.tsx",
+      "children": [
+        "/_auth/dashboard/start"
+      ]
+    },
+    "/_auth/dashboard/start": {
+      "filePath": "_auth.dashboard.start.tsx",
+      "parent": "/_auth/dashboard"
     }
   }
 }
