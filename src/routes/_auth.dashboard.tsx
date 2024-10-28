@@ -16,7 +16,7 @@ export const Route = createFileRoute('/_auth/dashboard')({
   component: DashboardPage,
 })
 
-function DashboardPage() {
+export function DashboardPage() {
     console.log('Rendering /_auth/dashboard')
 
   const auth = useAuth()
@@ -29,9 +29,7 @@ function DashboardPage() {
           <div className="p-4">
             <SidebarTrigger />
             <section className="grid gap-2 mt-4">
-              <h1 className="text-2xl font-bold">Dashboard</h1>
-              <p>Hi {auth.user}!</p>
-              <p>You are currently on the dashboard route.</p>
+             {/* <Outlet/> */}
             </section>
           </div>
         </main>

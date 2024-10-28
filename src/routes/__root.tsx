@@ -3,7 +3,7 @@ import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { useAuth } from '../context/useAuth'
 import { useEffect } from 'react'
-
+import { DashboardPage } from './_auth.dashboard'
 export const Route = createRootRoute({
   component: RootComponent,
 })
@@ -11,18 +11,18 @@ export const Route = createRootRoute({
 function RootComponent() {
   const { isAuthenticated } = useAuth()
   const navigate = useNavigate()
-
   useEffect(() => {
-    if (isAuthenticated) {
-      navigate({ to: '/dashboard' })
+    if (isAuthenticated && window.location.pathname === '/') {
+      navigate({ to: '/dashboard' });
     }
-  }, [isAuthenticated, navigate])
+  }, [isAuthenticated, navigate]);
+  
 
   return (
     <>
       {isAuthenticated ? (
         <div className="p-2">
-          <Outlet />
+          <DashboardPage/>
           <TanStackRouterDevtools />
         </div>
       ) : (
