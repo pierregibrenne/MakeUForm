@@ -30,7 +30,6 @@ export function DashboardPage() {
           <div className="p-4">
             <SidebarTrigger />
             <section className="grid gap-2 mt-4">
-                <p>ceci est outlet</p>
               <Outlet /> {/* Utilisez <Outlet /> pour rendre les enfants */}
             </section>
           </div>
