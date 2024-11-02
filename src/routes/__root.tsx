@@ -22,7 +22,7 @@ function RootComponent() {
     <>
       {isAuthenticated ? (
         <div className="p-2">
-          <DashboardPage/>
+          <Outlet /> {/* Assurez-vous que l'Outlet est ici pour rendre les enfants */}
           <TanStackRouterDevtools />
         </div>
       ) : (

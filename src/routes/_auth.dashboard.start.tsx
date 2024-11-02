@@ -8,4 +8,4 @@ export const Route = createFileRoute('/_auth/dashboard/start')({
       }
       return <div>Hello /_auth/dashboard/start!</div>;
     },
-  });
+  });   
