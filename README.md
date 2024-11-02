@@ -1,51 +1,78 @@
-# React + TypeScript + Vite
+# FormSaas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+FormSaas est une application web permettant de créer et gérer des formulaires en ligne. Elle utilise Supabase pour la gestion de l'authentification et des données, et est construite avec React, TypeScript et Vite.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Prérequis
 
-## Expanding the ESLint configuration
+- Node.js (version 14 ou supérieure)
+- npm ou yarn
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Installation
 
-- Configure the top-level `parserOptions` property like this:
+1. Clonez le dépôt :
+  ```bash
+  git clone https://github.com/votre-utilisateur/FormSaas.git
+  cd FormSaas
+  ```
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+2. Installez les dépendances :
+  ```bash
+  npm install
+  # ou
+  yarn install
+  ```
+
+3. Configurez les variables d'environnement :
+  Créez un fichier `.env` à la racine du projet et ajoutez les variables suivantes :
+  ```env
+  VITE_SUPABASE_URL=https://qwbftujuhdgrwofalspa.supabase.co
+  VITE_SUPABASE_ANON_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InF3YmZ0dWp1aGRncndvZmFsc3BhIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY0Mjg3MjUsImV4cCI6MjA0MjAwNDcyNX0.OXZQjbv5bKzImPJFND_r7P99bsQZiiU9qwbc4qOCzqg
+  ```
+
+## Démarrage
+
+Pour démarrer l'application en mode développement, exécutez :
+```bash
+npm run dev
+# ou
+yarn dev
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+L'application sera accessible à l'adresse `http://localhost:3000`.
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Structure du projet
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
+- `src/`: Contient le code source de l'application.
+  - `components/`: Composants réutilisables.
+  - `context/`: Contextes React pour la gestion de l'état global.
+  - `features/`: Fonctionnalités spécifiques de l'application (authentification, création de formulaires, etc.).
+  - `routes/`: Définition des routes de l'application.
+  - `utils/`: Fonctions utilitaires et configuration de Supabase.
+- `public/`: Fichiers statiques.
+- `index.html`: Fichier HTML principal.
+- `vite.config.ts`: Configuration de Vite.
+
+## Authentification
+
+L'authentification est gérée par Supabase. Les utilisateurs peuvent se connecter et s'inscrire via les routes `/login` et `/signup`.
+
+## Déploiement
+
+Pour créer une version de production de l'application, exécutez :
+```bash
+npm run build
+# ou
+yarn build
 ```
-# MakeUForm
+
+Les fichiers de production seront générés dans le dossier `dist`.
+
+## Contribution
+
+Les contributions sont les bienvenues ! Veuillez soumettre une pull request ou ouvrir une issue pour discuter des changements que vous souhaitez apporter.
+
+## Licence
+
+Ce projet est sous licence MIT. Voir le fichier [LICENSE](LICENSE) pour plus de détails.
