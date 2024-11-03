@@ -28,8 +28,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
 import { motion } from 'framer-motion'
-
-export default function Component() {
+import { BorderBeam } from "@/components/ui/border-beam";
+export default function FormBuilder() {
   const [options, setOptions] = useState(['Option 1'])
   const [isRequired, setIsRequired] = useState(false)
 
@@ -40,6 +40,7 @@ export default function Component() {
   return (
     <div className="min-h-screen w-full bg-[#F8F9FC] p-8 "> {/* Updated background color */}
       <div className="max-w-3xl mx-auto space-y-6">
+        
         <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -51,13 +52,14 @@ export default function Component() {
                 className="text-3xl font-bold border-none px-0 focus-visible:ring-0 bg-transparent" 
                 placeholder="Formulaire sans titre" 
               />
+              
               <Input 
                 className="text-lg border-none px-0 focus-visible:ring-0 resize-none bg-transparent min-h-[80px] overflow-y-auto" 
                 placeholder="Description du formulaire"
                 type="text"
                 multiline
                 rows={2}
-              />
+              />            
             </CardContent>
           </Card>
         </motion.div>
@@ -155,6 +157,7 @@ export default function Component() {
                   <Plus className="h-5 w-5 mr-2" />
                   Ajouter une option
                 </Button>
+                
               </div>
 
               <div className="flex items-center justify-between pt-4 border-t border-gray-200">
@@ -174,6 +177,7 @@ export default function Component() {
                     onCheckedChange={setIsRequired}
                   />
                 </div>
+                <BorderBeam />
               </div>
             </CardContent>
           </Card>
@@ -185,6 +189,7 @@ export default function Component() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex justify-end gap-3"
         >
+            
           <Button variant="outline" className="rounded-full px-6">Aperçu</Button>
           <Button className="rounded-full px-6">Enregistrer</Button>
         </motion.div>
