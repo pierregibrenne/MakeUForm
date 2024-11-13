@@ -32,7 +32,13 @@ import { BorderBeam } from "@/components/ui/border-beam";
 export default function FormBuilder() {
   const [options, setOptions] = useState(['Option 1'])
   const [isRequired, setIsRequired] = useState(false)
-
+    //   pour stocker les questions dans un tableau
+  const [questions, setQuestions] = useState([]);
+  
+  const addQuestion = () => {
+    setQuestions([...questions, { id: questions.length + 1, options: ['Option 1'], isRequired: false }]);
+  };
+  
   const addOption = () => {
     setOptions([...options, `Option ${options.length + 1}`])
   }
@@ -189,8 +195,11 @@ export default function FormBuilder() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="flex justify-end gap-3"
         >
-            
           <Button variant="outline" className="rounded-full px-6">Aperçu</Button>
+          <Button variant="outline" className="rounded-full px-6">
+            <Plus className="h-5 w-5 mr-2" />
+            Ajouter une question
+          </Button>
           <Button className="rounded-full px-6">Enregistrer</Button>
         </motion.div>
       </div>
