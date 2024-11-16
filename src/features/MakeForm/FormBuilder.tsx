@@ -1,34 +1,6 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Switch } from '@/components/ui/switch';
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from '@/components/ui/select';
-import {
-  Copy,
-  ImageIcon,
-  MoreVertical,
-  Plus,
-  Trash2,
-  Type,
-  CheckSquare,
-  AlignLeft,
-} from 'lucide-react';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
-import { motion } from 'framer-motion';
-import { BorderBeam } from '@/components/ui/border-beam';
+import {Plus} from 'lucide-react';
 import FormHeader from './FormHeader/FormHeader';
 import QuestionCard from './QuestionCard/QuestionCard';
 
