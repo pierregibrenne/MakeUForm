@@ -59,6 +59,7 @@ export default function FormBuilder() {
           />
         ))}
         <FormActions onAddQuestion={addQuestion} onSave={saveForm} onPreview={previewForm} />
+        
       </div>
     </div>
   );

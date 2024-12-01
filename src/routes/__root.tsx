@@ -3,7 +3,6 @@ import { TanStackRouterDevtools } from '@tanstack/router-devtools'
 import { ModeToggle } from '@/components/ui/mode-toggle'
 import { useAuth } from '../context/useAuth'
 import { useEffect } from 'react'
-import { DashboardPage } from './_auth.dashboard'
 export const Route = createRootRoute({
   component: RootComponent,
 })
