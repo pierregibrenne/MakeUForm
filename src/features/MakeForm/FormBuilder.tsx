@@ -1,11 +1,16 @@
 import { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import {Plus} from 'lucide-react';
+import { Plus } from 'lucide-react';
 import FormHeader from './FormHeader/FormHeader';
 import QuestionCard from './QuestionCard/QuestionCard';
 
+type FormActionsProps = {
+  onAddQuestion: () => void;
+  onSave: () => void;
+  onPreview: () => void;
+};
 
-function FormActions({ onAddQuestion, onSave, onPreview }) {
+function FormActions({ onAddQuestion, onSave, onPreview }: FormActionsProps) {
   return (
     <div className="flex justify-end gap-3">
       <Button variant="outline" className="rounded-full px-6" onClick={onPreview}>
@@ -31,7 +36,7 @@ export default function FormBuilder() {
     setQuestions([...questions, { id: Date.now(), options: ['Option 1'], isRequired: false }]);
   };
 
-  const addOption = (id) => {
+  const addOption = (id: number) => {
     setQuestions((prev) =>
       prev.map((q) =>
         q.id === id ? { ...q, options: [...q.options, `Option ${q.options.length + 1}`] } : q
@@ -39,7 +44,7 @@ export default function FormBuilder() {
     );
   };
 
-  const deleteQuestion = (id) => {
+  const deleteQuestion = (id: number) => {
     setQuestions((prev) => prev.filter((q) => q.id !== id));
   };
 
@@ -59,7 +64,6 @@ export default function FormBuilder() {
           />
         ))}
         <FormActions onAddQuestion={addQuestion} onSave={saveForm} onPreview={previewForm} />
-        
       </div>
     </div>
   );
