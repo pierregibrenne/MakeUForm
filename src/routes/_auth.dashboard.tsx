@@ -20,8 +20,6 @@ export const Route = createFileRoute('/_auth/dashboard')({
 export function DashboardPage() {
   console.log('Rendering /_auth/dashboard')
 
-  const auth = useAuth()
-
   return (
     <SidebarProvider>
       <div className="flex h-screen">
