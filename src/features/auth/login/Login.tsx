@@ -14,7 +14,7 @@ interface LoginProps {
   handleSubmit: (evt: React.FormEvent<HTMLFormElement>) => void
 }
 
-export default function Component({
+export default function Login({
   email,
   setEmail,
   password,
