@@ -1,5 +1,4 @@
 import { createFileRoute, redirect } from '@tanstack/react-router'
-import { useAuth } from '../context/useAuth'
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { Outlet } from '@tanstack/react-router'
@@ -19,8 +18,6 @@ export const Route = createFileRoute('/_auth/dashboard')({
 
 export function DashboardPage() {
   console.log('Rendering /_auth/dashboard')
-
-  const auth = useAuth()
 
   return (
     <SidebarProvider>
