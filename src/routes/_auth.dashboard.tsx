@@ -4,15 +4,6 @@ import { AppSidebar } from "@/components/app-sidebar"
 import { Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_auth/dashboard')({
-  beforeLoad: ({ context }) => {
-    // @ts-ignore
-    if (!context.auth.isAuthenticated) {
-      throw redirect({
-        to: '/login',
-        search: { redirect: '/dashboard' },
-      })
-    }
-  },
   component: DashboardPage,
 })
 
