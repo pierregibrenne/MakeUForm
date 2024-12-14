@@ -1,18 +1,19 @@
-import { createFileRoute, redirect } from '@tanstack/react-router'
+import { createFileRoute} from '@tanstack/react-router'
 import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar"
 import { AppSidebar } from "@/components/app-sidebar"
 import { Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_auth/dashboard')({
-  beforeLoad: ({ context }) => {
-    // @ts-ignore
-    if (!context.auth.isAuthenticated) {
-      throw redirect({
-        to: '/login',
-        search: { redirect: '/dashboard' },
-      })
-    }
-  },
+    
+//   beforeLoad: ({ context }) => {
+//     // @ts-ignore
+//     if (!context.auth.isAuthenticated) {
+//       throw redirect({
+//         to: '/login',
+//         // search: { redirect: '/dashboard' },
+//       })
+//     }
+//   },
   component: DashboardPage,
 })
 

@@ -3,6 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Plus } from 'lucide-react';
 import FormHeader from './FormHeader/FormHeader';
 import QuestionCard from './QuestionCard/QuestionCard';
+import { supabase } from "../../../utils/supabase";
 
 type FormActionsProps = {
   onAddQuestion: () => void;
@@ -27,9 +28,44 @@ function FormActions({ onAddQuestion, onSave, onPreview }: FormActionsProps) {
   );
 }
 
+async function createForm(formName: string, formDescription: string, questions: any[]) {
+  try {
+    // Ici, on prépare la structure en format JSON ou tableau selon tes besoins
+    const formStructure = {
+      description: formDescription,
+      structure: questions, // La structure peut inclure tes questions
+      date_creation: new Date(),
+    };
+
+    // On envoie chaque colonne correctement
+    const { data, error } = await supabase
+      .from("Forms")
+      .insert([
+        {
+          nom: formName, // Le nom directement en colonne "nom"
+          structure: formStructure, // Le reste de la structure
+        },
+      ]);
+
+    if (error) {
+      console.error("Erreur lors de l'enregistrement :", error.message);
+      alert("Une erreur est survenue lors de l'enregistrement du formulaire.");
+    } else {
+      console.log("Formulaire enregistré avec succès :", data);
+      alert("Formulaire enregistré avec succès !");
+    }
+  } catch (err) {
+    console.error("Erreur inconnue :", err);
+    alert("Une erreur est survenue.");
+  }
+}
+
 export default function FormBuilder() {
+  const [formName, setFormName] = useState('');
+  const [formDescription, setFormDescription] = useState('');
   const [questions, setQuestions] = useState([
     { id: 1, options: ['Option 1'], isRequired: false },
+    { id: 2, options: ['Option 2'], isRequired: false },
   ]);
 
   const addQuestion = () => {
@@ -48,7 +84,9 @@ export default function FormBuilder() {
     setQuestions((prev) => prev.filter((q) => q.id !== id));
   };
 
-  const saveForm = () => console.log('Form saved', questions);
+  const saveForm = () => {
+    createForm(formName, formDescription, questions);
+  };
   const previewForm = () => console.log('Previewing form', questions);
 
   return (
