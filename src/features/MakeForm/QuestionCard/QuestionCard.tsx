@@ -33,6 +33,7 @@ interface QuestionCardProps {
     question: { id: number, options: string[], isRequired: boolean };
     onAddOption: (id: number) => void;
     onDelete: (id: number) => void;
+    onOptionChange: (questionId: number, optionIndex: number, value: string) => void;
   }
 const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAddOption, onDelete }) => {
     const [questionType, setQuestionType] = useState("multiple"); // Type de question (par défaut : choix multiples)

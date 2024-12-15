@@ -32,19 +32,19 @@ const data = {
   },
   navMain: [
     {
-      title: "Crée ton Formulaire",
+      title: "Formulaire",
       url: "#",
       icon: SquareTerminal,
       isActive: true,
       items: [
        
         {
-          title: "Start",
+          title: "Créer un formulaire",
           url: "/dashboard/start",
         }, 
         {
-          title: "History",
-          url: "#",
+          title: "Mes Formulaires",
+          url: "/dashboard/mesforms",
         },
         {
           title: "Settings",
