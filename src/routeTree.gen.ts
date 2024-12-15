@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as AuthDashboardImport } from './routes/_auth.dashboard'
 import { Route as AuthDashboardStartImport } from './routes/_auth.dashboard.start'
+import { Route as AuthDashboardMesformsImport } from './routes/_auth.dashboard.mesforms'
 import { Route as AuthDashboardAnalyticsImport } from './routes/_auth.dashboard.analytics'
 
 // Create Virtual Routes
@@ -53,6 +54,11 @@ const AuthDashboardRoute = AuthDashboardImport.update({
 
 const AuthDashboardStartRoute = AuthDashboardStartImport.update({
   path: '/start',
+  getParentRoute: () => AuthDashboardRoute,
+} as any)
+
+const AuthDashboardMesformsRoute = AuthDashboardMesformsImport.update({
+  path: '/mesforms',
   getParentRoute: () => AuthDashboardRoute,
 } as any)
 
@@ -107,6 +113,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardAnalyticsImport
       parentRoute: typeof AuthDashboardImport
     }
+    '/_auth/dashboard/mesforms': {
+      id: '/_auth/dashboard/mesforms'
+      path: '/mesforms'
+      fullPath: '/dashboard/mesforms'
+      preLoaderRoute: typeof AuthDashboardMesformsImport
+      parentRoute: typeof AuthDashboardImport
+    }
     '/_auth/dashboard/start': {
       id: '/_auth/dashboard/start'
       path: '/start'
@@ -121,11 +134,13 @@ declare module '@tanstack/react-router' {
 
 interface AuthDashboardRouteChildren {
   AuthDashboardAnalyticsRoute: typeof AuthDashboardAnalyticsRoute
+  AuthDashboardMesformsRoute: typeof AuthDashboardMesformsRoute
   AuthDashboardStartRoute: typeof AuthDashboardStartRoute
 }
 
 const AuthDashboardRouteChildren: AuthDashboardRouteChildren = {
   AuthDashboardAnalyticsRoute: AuthDashboardAnalyticsRoute,
+  AuthDashboardMesformsRoute: AuthDashboardMesformsRoute,
   AuthDashboardStartRoute: AuthDashboardStartRoute,
 }
 
@@ -140,6 +155,7 @@ export interface FileRoutesByFullPath {
   '/signup': typeof SignupLazyRoute
   '/dashboard': typeof AuthDashboardRouteWithChildren
   '/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
+  '/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/dashboard/start': typeof AuthDashboardStartRoute
 }
 
@@ -150,6 +166,7 @@ export interface FileRoutesByTo {
   '/signup': typeof SignupLazyRoute
   '/dashboard': typeof AuthDashboardRouteWithChildren
   '/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
+  '/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/dashboard/start': typeof AuthDashboardStartRoute
 }
 
@@ -161,6 +178,7 @@ export interface FileRoutesById {
   '/signup': typeof SignupLazyRoute
   '/_auth/dashboard': typeof AuthDashboardRouteWithChildren
   '/_auth/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
+  '/_auth/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/_auth/dashboard/start': typeof AuthDashboardStartRoute
 }
 
@@ -173,6 +191,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/dashboard'
     | '/dashboard/analytics'
+    | '/dashboard/mesforms'
     | '/dashboard/start'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -182,6 +201,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/dashboard'
     | '/dashboard/analytics'
+    | '/dashboard/mesforms'
     | '/dashboard/start'
   id:
     | '__root__'
@@ -191,6 +211,7 @@ export interface FileRouteTypes {
     | '/signup'
     | '/_auth/dashboard'
     | '/_auth/dashboard/analytics'
+    | '/_auth/dashboard/mesforms'
     | '/_auth/dashboard/start'
   fileRoutesById: FileRoutesById
 }
@@ -246,11 +267,16 @@ export const routeTree = rootRoute
       "filePath": "_auth.dashboard.tsx",
       "children": [
         "/_auth/dashboard/analytics",
+        "/_auth/dashboard/mesforms",
         "/_auth/dashboard/start"
       ]
     },
     "/_auth/dashboard/analytics": {
       "filePath": "_auth.dashboard.analytics.tsx",
+      "parent": "/_auth/dashboard"
+    },
+    "/_auth/dashboard/mesforms": {
+      "filePath": "_auth.dashboard.mesforms.tsx",
       "parent": "/_auth/dashboard"
     },
     "/_auth/dashboard/start": {
