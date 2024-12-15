@@ -43,10 +43,8 @@ const rootElement = document.getElementById('root')!
 if (!rootElement.innerHTML) {
   const root = ReactDOM.createRoot(rootElement)
   root.render(
-    <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
     <StrictMode>
       <App/>
     </StrictMode>
-    </ThemeProvider>
   )
 }

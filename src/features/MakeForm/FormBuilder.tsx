@@ -92,7 +92,7 @@ export default function FormBuilder() {
   return (
     <div className="min-h-screen w-full bg-[#F8F9FC] p-8">
       <div className="max-w-3xl mx-auto space-y-6">
-        <FormHeader />
+        <FormHeader formName={formName} setFormName={setFormName} />
         {questions.map((q) => (
           <QuestionCard
             key={q.id}
