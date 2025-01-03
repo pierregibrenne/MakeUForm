@@ -13,6 +13,7 @@ import { createFileRoute } from '@tanstack/react-router'
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
+import { Route as FormFormImport } from './routes/form.$form'
 import { Route as AuthDashboardImport } from './routes/_auth.dashboard'
 import { Route as AuthDashboardStartImport } from './routes/_auth.dashboard.start'
 import { Route as AuthDashboardMesformsImport } from './routes/_auth.dashboard.mesforms'
@@ -46,6 +47,11 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const FormFormRoute = FormFormImport.update({
+  path: '/form/$form',
+  getParentRoute: () => rootRoute,
+} as any)
 
 const AuthDashboardRoute = AuthDashboardImport.update({
   path: '/dashboard',
@@ -106,6 +112,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardImport
       parentRoute: typeof rootRoute
     }
+    '/form/$form': {
+      id: '/form/$form'
+      path: '/form/$form'
+      fullPath: '/form/$form'
+      preLoaderRoute: typeof FormFormImport
+      parentRoute: typeof rootRoute
+    }
     '/_auth/dashboard/analytics': {
       id: '/_auth/dashboard/analytics'
       path: '/analytics'
@@ -154,6 +167,7 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
   '/dashboard': typeof AuthDashboardRouteWithChildren
+  '/form/$form': typeof FormFormRoute
   '/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
   '/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/dashboard/start': typeof AuthDashboardStartRoute
@@ -165,6 +179,7 @@ export interface FileRoutesByTo {
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
   '/dashboard': typeof AuthDashboardRouteWithChildren
+  '/form/$form': typeof FormFormRoute
   '/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
   '/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/dashboard/start': typeof AuthDashboardStartRoute
@@ -177,6 +192,7 @@ export interface FileRoutesById {
   '/login': typeof LoginLazyRoute
   '/signup': typeof SignupLazyRoute
   '/_auth/dashboard': typeof AuthDashboardRouteWithChildren
+  '/form/$form': typeof FormFormRoute
   '/_auth/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
   '/_auth/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/_auth/dashboard/start': typeof AuthDashboardStartRoute
@@ -190,6 +206,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/dashboard'
+    | '/form/$form'
     | '/dashboard/analytics'
     | '/dashboard/mesforms'
     | '/dashboard/start'
@@ -200,6 +217,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/dashboard'
+    | '/form/$form'
     | '/dashboard/analytics'
     | '/dashboard/mesforms'
     | '/dashboard/start'
@@ -210,6 +228,7 @@ export interface FileRouteTypes {
     | '/login'
     | '/signup'
     | '/_auth/dashboard'
+    | '/form/$form'
     | '/_auth/dashboard/analytics'
     | '/_auth/dashboard/mesforms'
     | '/_auth/dashboard/start'
@@ -222,6 +241,7 @@ export interface RootRouteChildren {
   LoginLazyRoute: typeof LoginLazyRoute
   SignupLazyRoute: typeof SignupLazyRoute
   AuthDashboardRoute: typeof AuthDashboardRouteWithChildren
+  FormFormRoute: typeof FormFormRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
@@ -230,6 +250,7 @@ const rootRouteChildren: RootRouteChildren = {
   LoginLazyRoute: LoginLazyRoute,
   SignupLazyRoute: SignupLazyRoute,
   AuthDashboardRoute: AuthDashboardRouteWithChildren,
+  FormFormRoute: FormFormRoute,
 }
 
 export const routeTree = rootRoute
@@ -248,7 +269,8 @@ export const routeTree = rootRoute
         "/about",
         "/login",
         "/signup",
-        "/_auth/dashboard"
+        "/_auth/dashboard",
+        "/form/$form"
       ]
     },
     "/": {
@@ -270,6 +292,9 @@ export const routeTree = rootRoute
         "/_auth/dashboard/mesforms",
         "/_auth/dashboard/start"
       ]
+    },
+    "/form/$form": {
+      "filePath": "form.$form.tsx"
     },
     "/_auth/dashboard/analytics": {
       "filePath": "_auth.dashboard.analytics.tsx",
