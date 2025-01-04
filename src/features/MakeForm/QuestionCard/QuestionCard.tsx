@@ -1,11 +1,10 @@
 import { useState } from "react";
+import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import { NewBadge } from "@/components/ui/new-badge";
-
 import {
   Select,
   SelectContent,
@@ -13,26 +12,18 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import {
-  Copy,
-  ImageIcon,
-  MoreVertical,
-  Plus,
-  Trash2,
-  CircleCheck,
-  CheckSquare,
-} from "lucide-react";
+import { Copy, ImageIcon, MoreVertical, Trash2, CircleCheck, CheckSquare } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { motion } from "framer-motion";
 import { BorderBeam } from "@/components/ui/border-beam";
-import MultipleChoice from "../Choice/MultipleChoice";
-import CheckboxOption from "../Choice/CheckboxOption";
 import TableOptions from "../Choice/TableOptions";
+import ChoiceDisplay from "../Choice/ChoiceDisplay";
+import { NewBadge } from "@/components/ui/new-badge"; 
+import ChoiceSelect from "../Choice/ChoiceSelect";
 
 interface QuestionCardProps {
   question: { id: number; options: string[]; isRequired: boolean };
@@ -79,54 +70,12 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAddOption, onDe
               className="text-xl font-semibold border-none px-0 focus-visible:ring-0 bg-transparent"
               placeholder="Question sans titre"
             />
-            <div className="flex items-center gap-3">
-              <Select defaultValue={questionType} onValueChange={handleTypeChange}>
-                <SelectTrigger className="w-[180px] bg-white/50 backdrop-blur-sm">
-                  <SelectValue placeholder="Type de question" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="multiple">
-                    <div className="flex items-center">
-                      <CircleCheck className="w-5 h-5 mr-2" />
-                      Choix multiples
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="checkbox">
-                    <div className="flex items-center">
-                      <CheckSquare className="w-4 h-4 mr-2" />
-                      Cases à cocher
-                    </div>
-                  </SelectItem>
-                  <SelectItem value="tableaux">
-                    <div className="flex items-center">
-                      <NewBadge text="Tableaux" />
-                    </div>
-                  </SelectItem>
-                </SelectContent>
-              </Select>
-              <Button variant="ghost" size="icon" className="rounded-full">
-                <ImageIcon className="h-5 w-5" />
-              </Button>
-              <DropdownMenu>
-                <DropdownMenuTrigger asChild>
-                  <Button variant="ghost" size="icon" className="rounded-full">
-                    <MoreVertical className="h-5 w-5" />
-                  </Button>
-                </DropdownMenuTrigger>
-                <DropdownMenuContent align="end">
-                  <DropdownMenuItem>
-                    <Copy className="h-4 w-4 mr-2" />
-                    Dupliquer
-                  </DropdownMenuItem>
-                  <DropdownMenuItem className="text-destructive" onClick={() => onDelete(question.id)}>
-                    <Trash2 className="h-4 w-4 mr-2" />
-                    Supprimer
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <ChoiceSelect
+              questionType={questionType}
+              onTypeChange={handleTypeChange}
+              onDelete={() => onDelete(question.id)}
+            />
             </div>
-          </div>
-
           {questionType === "tableaux" ? (
             <TableOptions
               tableData={tableData}
@@ -136,37 +85,12 @@ const QuestionCard: React.FC<QuestionCardProps> = ({ question, onAddOption, onDe
               onDeleteRow={(rowIndex) => setTableData((prev) => prev.filter((_, i) => i !== rowIndex))}
             />
           ) : (
-            <div className="space-y-3 pl-6">
-              {options.map((option, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.3, delay: index * 0.1 }}
-                  className="flex items-center gap-3"
-                >
-                  {questionType === "multiple" ? (
-                    <div className="h-5 w-5 rounded-full border-2 border-primary mt-3" />
-                  ) : (
-                    <input type="checkbox" className="h-5 w-5 border-2 border-primary mt-3" />
-                  )}
-                  <Input
-                    className="border-none focus-visible:ring-0 bg-white/50 backdrop-blur-sm"
-                    placeholder={`Option ${index + 1}`}
-                    value={option}
-                    onChange={(e) => handleOptionChange(index, e.target.value)}
-                  />
-                </motion.div>
-              ))}
-              <Button
-                variant="ghost"
-                className="text-primary hover:text-primary/80 transition-colors"
-                onClick={handleAddOption}
-              >
-                <Plus className="h-5 w-5 mr-2" />
-                Ajouter une option
-              </Button>
-            </div>
+            <ChoiceDisplay
+              options={options}
+              questionType={questionType}
+              onOptionChange={handleOptionChange}
+              onAddOption={handleAddOption}
+            />
           )}
 
           <div className="flex items-center justify-between pt-4 border-t border-gray-200">

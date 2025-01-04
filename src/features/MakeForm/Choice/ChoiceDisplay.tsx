@@ -3,14 +3,14 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 
-interface ChoiceListProps {
+interface ChoiceDisplayProps {
   options: string[];
   questionType: string;
   onOptionChange: (index: number, value: string) => void;
   onAddOption: () => void;
 }
 
-const ChoiceList: React.FC<ChoiceListProps> = ({ options, questionType, onOptionChange, onAddOption }) => {
+const ChoiceDisplay: React.FC<ChoiceDisplayProps> = ({ options, questionType, onOptionChange, onAddOption }) => {
   return (
     <div className="space-y-3 pl-6">
       {options.map((option, index) => (
@@ -46,4 +46,4 @@ const ChoiceList: React.FC<ChoiceListProps> = ({ options, questionType, onOption
   );
 };
 
-export default ChoiceList;
+export default ChoiceDisplay;
