@@ -29,7 +29,6 @@ const TableOptions = () => {
       return [...prevMatrix, newRow];
     });
   };
-
   const addColumn = () => {
     setMatrix((prevMatrix) => {
       const newColumnHeader = { value: `Colonne ${prevMatrix[0].length}`, disabled: false, type: "columns" };
@@ -67,7 +66,7 @@ const TableOptions = () => {
                     />
                   ) : (
                     <input
-                      type="radio"
+                      type="text"
                       disabled={cell.disabled}
                       name={`row-${rowIndex}`}
                       className="mx-auto"
