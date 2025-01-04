@@ -5,10 +5,10 @@ import { Trash2 } from "lucide-react";
 
 const TableOptions = () => {
   const [matrix, setMatrix] = useState([
-    [{ value: "Titre du tab", disabled: true }, { value: "Colonne 1", disabled: false }, { value: "Colonne 2", disabled: false }],
-    [{ value: "Ligne 1", disabled: false }, { value: "", disabled: true }, { value: "", disabled: true }],
-    [{ value: "Ligne 2", disabled: false }, { value: "", disabled: true }, { value: "", disabled: true }],
-    [{ value: "Ligne 3", disabled: false }, { value: "", disabled: true }, { value: "", disabled: true }],
+    [{ value: "Titre du tab", disabled: true, type: "titre"}, { value: "Colonne 1", disabled: false, type: "columns"}, { value: "Colonne 2", disabled: false, type: "columns" }],
+    [{ value: "Ligne 1", disabled: false, type: "rows"}, { value: "", disabled: true, type: "cells" }, { value: "", disabled: true,  type: "cells"}],
+    [{ value: "Ligne 2", disabled: false, type: "rows"}, { value: "", disabled: true, type: "cells"  }, { value: "", disabled: true,  type: "cells" }],
+    [{ value: "Ligne 3", disabled: false, type: "rows" }, { value: "", disabled: true, type: "cells"  }, { value: "", disabled: true, type: "cells" }],
   ]);
 
   const handleCellChange = (rowIndex, colIndex, newValue) => {
@@ -23,8 +23,8 @@ const TableOptions = () => {
     setMatrix((prevMatrix) => {
       const newRow = prevMatrix[0].map((cell, colIndex) =>
         colIndex === 0
-          ? { value: `Ligne ${prevMatrix.length}`, disabled: false }
-          : { value: "", disabled: true }
+          ? { value: `Ligne ${prevMatrix.length}`, disabled: false, type: "rows" }
+          : { value: "", disabled: true, type: "cells" }
       );
       return [...prevMatrix, newRow];
     });
@@ -32,11 +32,11 @@ const TableOptions = () => {
 
   const addColumn = () => {
     setMatrix((prevMatrix) => {
-      const newColumnHeader = { value: `Colonne ${prevMatrix[0].length}`, disabled: false };
+      const newColumnHeader = { value: `Colonne ${prevMatrix[0].length}`, disabled: false, type: "columns" };
       return prevMatrix.map((row, rowIndex) =>
         rowIndex === 0
           ? [...row, newColumnHeader]
-          : [...row, { value: "", disabled: true }]
+          : [...row, { value: "", disabled: true, type: "cells" }]
       );
     });
   };
