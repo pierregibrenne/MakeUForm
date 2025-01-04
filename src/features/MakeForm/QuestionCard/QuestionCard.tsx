@@ -1,28 +1,13 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
-import { Copy, ImageIcon, MoreVertical, Trash2, CircleCheck, CheckSquare } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+
 import { BorderBeam } from "@/components/ui/border-beam";
 import TableOptions from "../Choice/TableOptions";
 import ChoiceDisplay from "../Choice/ChoiceDisplay";
-import { NewBadge } from "@/components/ui/new-badge"; 
 import ChoiceSelect from "../Choice/ChoiceSelect";
 
 interface QuestionCardProps {
