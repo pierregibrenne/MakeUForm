@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 
 const TableOptions = () => {
   const [matrix, setMatrix] = useState([
-    [{ value: "", disabled: true }, { value: "Option 1", disabled: false }, { value: "Colonne 2", disabled: false }],
-    [{ value: "test", disabled: false }, { value: "", disabled: true }, { value: "", disabled: true }],
-    [{ value: "test2", disabled: false }, { value: "", disabled: true }, { value: "", disabled: true }],
+    [{ value: "Titre du tab", disabled: true }, { value: "Colonne 1", disabled: false }, { value: "Colonne 2", disabled: false }],
+    [{ value: "Ligne 1", disabled: false }, { value: "", disabled: true }, { value: "", disabled: true }],
+    [{ value: "Ligne 2", disabled: false }, { value: "", disabled: true }, { value: "", disabled: true }],
     [{ value: "Ligne 3", disabled: false }, { value: "", disabled: true }, { value: "", disabled: true }],
   ]);
 
