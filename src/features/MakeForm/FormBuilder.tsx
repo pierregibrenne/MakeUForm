@@ -62,7 +62,7 @@ async function createForm(formName: string, formDescription: string, questions: 
 
 export default function FormBuilder() {
   const [formName, setFormName] = useState('');
-  const [formDescription, setFormDescription] = useState('');
+  const [formDescription] = useState('');
   const [questions, setQuestions] = useState([
     { id: 1, options: ['Option 1'], isRequired: false },
     { id: 2, options: ['Option 2'], isRequired: false },

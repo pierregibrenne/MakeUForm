@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Trash2 } from "lucide-react";
 
+
 const TableOptions = () => {
   const [matrix, setMatrix] = useState([
     [{ value: "Titre du tab", disabled: true, type: "titre"}, { value: "Colonne 1", disabled: false, type: "columns"}, { value: "Colonne 2", disabled: false, type: "columns" }],
@@ -11,7 +12,7 @@ const TableOptions = () => {
     [{ value: "Ligne 3", disabled: false, type: "rows" }, { value: "", disabled: true, type: "cells"  }, { value: "", disabled: true, type: "cells" }],
   ]);
 
-  const handleCellChange = (rowIndex, colIndex, newValue) => {
+  const handleCellChange = (rowIndex: number, colIndex: number, newValue: string) => {
     setMatrix((prevMatrix) => {
       const updatedMatrix = [...prevMatrix];
       updatedMatrix[rowIndex][colIndex] = { ...updatedMatrix[rowIndex][colIndex], value: newValue };
