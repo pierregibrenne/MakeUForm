@@ -12,8 +12,7 @@ type FormHeaderProps = {
     setFormDescription: (description: string) => void;
 };
 
-export default 
-function FormHeader({ formName, setFormName, formDescription, setFormDescription }: FormHeaderProps) {
+export default function FormHeader({ formName, setFormName, formDescription, setFormDescription }: FormHeaderProps) {
   return (
     <motion.div
       initial={{ opacity: 0, y: -20 }}
