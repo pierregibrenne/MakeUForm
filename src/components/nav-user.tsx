@@ -30,6 +30,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar"
+import { Link } from '@tanstack/react-router'
 
 export function NavUser({
   user,
@@ -97,10 +98,13 @@ export function NavUser({
                 <CreditCard />
                 Billing
               </DropdownMenuItem> 
+              <Link to="/dashboard/teams">
               <DropdownMenuItem>
               <UsersRound />
                 Teams
               </DropdownMenuItem>
+              </Link>
+
               <DropdownMenuItem>
                 <Bell />
                 Notifications
