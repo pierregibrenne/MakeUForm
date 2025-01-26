@@ -3,7 +3,7 @@ import {
   BookOpen,
   Command,
   LifeBuoy,
-  Map,
+  UsersRound,
   PieChart,
   Send,
   Settings2,
@@ -116,11 +116,6 @@ const data = {
       name: "Analytics",
       url: "/dashboard/analytics",
       icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
     },
   ],
 }

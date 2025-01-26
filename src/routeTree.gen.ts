@@ -15,6 +15,7 @@ import { createFileRoute } from '@tanstack/react-router'
 import { Route as rootRoute } from './routes/__root'
 import { Route as FormFormImport } from './routes/form.$form'
 import { Route as AuthDashboardImport } from './routes/_auth.dashboard'
+import { Route as AuthDashboardTeamsImport } from './routes/_auth.dashboard.teams'
 import { Route as AuthDashboardStartImport } from './routes/_auth.dashboard.start'
 import { Route as AuthDashboardMesformsImport } from './routes/_auth.dashboard.mesforms'
 import { Route as AuthDashboardAnalyticsImport } from './routes/_auth.dashboard.analytics'
@@ -56,6 +57,11 @@ const FormFormRoute = FormFormImport.update({
 const AuthDashboardRoute = AuthDashboardImport.update({
   path: '/dashboard',
   getParentRoute: () => rootRoute,
+} as any)
+
+const AuthDashboardTeamsRoute = AuthDashboardTeamsImport.update({
+  path: '/teams',
+  getParentRoute: () => AuthDashboardRoute,
 } as any)
 
 const AuthDashboardStartRoute = AuthDashboardStartImport.update({
@@ -140,6 +146,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthDashboardStartImport
       parentRoute: typeof AuthDashboardImport
     }
+    '/_auth/dashboard/teams': {
+      id: '/_auth/dashboard/teams'
+      path: '/teams'
+      fullPath: '/dashboard/teams'
+      preLoaderRoute: typeof AuthDashboardTeamsImport
+      parentRoute: typeof AuthDashboardImport
+    }
   }
 }
 
@@ -149,12 +162,14 @@ interface AuthDashboardRouteChildren {
   AuthDashboardAnalyticsRoute: typeof AuthDashboardAnalyticsRoute
   AuthDashboardMesformsRoute: typeof AuthDashboardMesformsRoute
   AuthDashboardStartRoute: typeof AuthDashboardStartRoute
+  AuthDashboardTeamsRoute: typeof AuthDashboardTeamsRoute
 }
 
 const AuthDashboardRouteChildren: AuthDashboardRouteChildren = {
   AuthDashboardAnalyticsRoute: AuthDashboardAnalyticsRoute,
   AuthDashboardMesformsRoute: AuthDashboardMesformsRoute,
   AuthDashboardStartRoute: AuthDashboardStartRoute,
+  AuthDashboardTeamsRoute: AuthDashboardTeamsRoute,
 }
 
 const AuthDashboardRouteWithChildren = AuthDashboardRoute._addFileChildren(
@@ -171,6 +186,7 @@ export interface FileRoutesByFullPath {
   '/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
   '/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/dashboard/start': typeof AuthDashboardStartRoute
+  '/dashboard/teams': typeof AuthDashboardTeamsRoute
 }
 
 export interface FileRoutesByTo {
@@ -183,6 +199,7 @@ export interface FileRoutesByTo {
   '/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
   '/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/dashboard/start': typeof AuthDashboardStartRoute
+  '/dashboard/teams': typeof AuthDashboardTeamsRoute
 }
 
 export interface FileRoutesById {
@@ -196,6 +213,7 @@ export interface FileRoutesById {
   '/_auth/dashboard/analytics': typeof AuthDashboardAnalyticsRoute
   '/_auth/dashboard/mesforms': typeof AuthDashboardMesformsRoute
   '/_auth/dashboard/start': typeof AuthDashboardStartRoute
+  '/_auth/dashboard/teams': typeof AuthDashboardTeamsRoute
 }
 
 export interface FileRouteTypes {
@@ -210,6 +228,7 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/mesforms'
     | '/dashboard/start'
+    | '/dashboard/teams'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -221,6 +240,7 @@ export interface FileRouteTypes {
     | '/dashboard/analytics'
     | '/dashboard/mesforms'
     | '/dashboard/start'
+    | '/dashboard/teams'
   id:
     | '__root__'
     | '/'
@@ -232,6 +252,7 @@ export interface FileRouteTypes {
     | '/_auth/dashboard/analytics'
     | '/_auth/dashboard/mesforms'
     | '/_auth/dashboard/start'
+    | '/_auth/dashboard/teams'
   fileRoutesById: FileRoutesById
 }
 
@@ -290,7 +311,8 @@ export const routeTree = rootRoute
       "children": [
         "/_auth/dashboard/analytics",
         "/_auth/dashboard/mesforms",
-        "/_auth/dashboard/start"
+        "/_auth/dashboard/start",
+        "/_auth/dashboard/teams"
       ]
     },
     "/form/$form": {
@@ -306,6 +328,10 @@ export const routeTree = rootRoute
     },
     "/_auth/dashboard/start": {
       "filePath": "_auth.dashboard.start.tsx",
+      "parent": "/_auth/dashboard"
+    },
+    "/_auth/dashboard/teams": {
+      "filePath": "_auth.dashboard.teams.tsx",
       "parent": "/_auth/dashboard"
     }
   }
