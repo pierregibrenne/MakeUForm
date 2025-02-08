@@ -8,19 +8,19 @@ import { Sparkles } from 'lucide-react';
 const pricingPlans = [
   {
     title: "Basic",
-    price: { monthly: "19", yearly: "$190/yr" },
+    price: { monthly: "19", yearly: "15" },
     features: ["1 User", "5GB Storage", "Basic Support", "Limited API Access", "Standard Analytics"],
   },
   {
     title: "Pro",
-    price: { monthly: "49", yearly: "$490/yr" },
+    price: { monthly: "49", yearly: "45" },
     features: ["5 Users", "50GB Storage", "Priority Support", "Full API Access", "Advanced Analytics"],
     highlight: true,
     popular: true,
   },
   {
     title: "Enterprise",
-    price: { monthly: "99", yearly: "$990/yr" },
+    price: { monthly: "99", yearly: "90" },
     features: ["Unlimited Users", "500GB Storage", "24/7 Premium Support", "Custom Integrations", "AI-Powered Insights"],
   },
 ];
@@ -30,11 +30,14 @@ export default function Pricing() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-20 px-6 w-full">
-      <h2 className="text-3xl font-semibold text-center mb-6">Choose the plan that's right for you</h2>
+      <h2 className="text-sm text-primary font-mono font-medium tracking-wider uppercase text-green-500">
+          PRIX
+        </h2>
+      <h2 className="text-3xl font-semibold text-center mb-6">Choisissez le meilleurs plan pour vos besoins</h2>
       <div className="flex items-center gap-2 mb-6">
-        <span>Monthly</span>
-        <Switch checked={isYearly} onCheckedChange={setIsYearly} />
-        <span>Yearly</span>
+        <span>Mensuelement</span>
+        <Switch className="data-[state=checked]:bg-green-500" checked={isYearly} onCheckedChange={setIsYearly} />
+        <span>Annuelement</span>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-6xl">
         {pricingPlans.map((plan) => (
@@ -58,6 +61,9 @@ export default function Pricing() {
                 <p className="text-6xl font-bold text-center mb-4">{isYearly ? plan.price.yearly : plan.price.monthly}
                   <span className="text-xs text-gray-500">€/mois</span>
                 </p>
+                {isYearly && (
+                  <span className="text-xs text-gray-400 flex items-center">Payer annullement</span>
+                )}
                 <ul className="space-y-2 mb-4">
                   {plan.features.map((feature, index) => (
                     <li key={index} className="text-sm text-muted-foreground flex items-center gap-2">
