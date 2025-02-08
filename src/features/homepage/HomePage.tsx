@@ -16,6 +16,7 @@ export default function HomePage() {
         <Fonctionnalite />
         <Testimonial />
         <Pricing />
+        <h1>Des questions, prenez rdv avec un membre de l'equipe</h1>
         <Call />
       </main>
     <Footer />
