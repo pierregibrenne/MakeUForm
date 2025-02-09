@@ -2,7 +2,13 @@ import { motion } from "framer-motion";
 
 export default function ProblemSection() {
   return (
-    <section className="relative container mx-auto px-4 py-16 max-w-7xl">
+    <motion.section
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1, ease: "easeOut" }}
+      viewport={{ once: true, amount: 0.2 }}
+      className="relative container mx-auto px-4 py-16 max-w-7xl"
+    >
       {/* Contenu principal */}
       <div className="text-center">
         <h2 className="text-sm text-primary font-mono font-medium tracking-wider uppercase text-red-500">
@@ -14,13 +20,23 @@ export default function ProblemSection() {
       </div>
 
       {/* Grille des problèmes */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.2 }}
+        variants={{
+          visible: { transition: { staggerChildren: 0.3 } },
+        }}
+      >
         {problems.map((problem, index) => (
           <motion.div
             key={index}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: index * 0.2 }}
+            variants={{
+              hidden: { opacity: 0, y: 20 },
+              visible: { opacity: 1, y: 0 },
+            }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
             className="p-6 bg-black backdrop-blur-lg rounded-lg border border-gray-700 shadow-lg"
           >
             <div className="text-3xl">{problem.icon}</div>
@@ -28,8 +44,8 @@ export default function ProblemSection() {
             <p className="text-gray-400 mt-2">{problem.description}</p>
           </motion.div>
         ))}
-      </div>
-    </section>
+      </motion.div>
+    </motion.section>
   );
 }
 
