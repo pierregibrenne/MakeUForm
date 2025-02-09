@@ -9,6 +9,9 @@
     }
   ],
   "compilerOptions": {
+    "strict": true,
+    "noEmit": true,
+    "maxErrors": 20, // Bloque le build si + de 20 erreurs, c'est du fait maison ça ;)
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
