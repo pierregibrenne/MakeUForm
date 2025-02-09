@@ -3,7 +3,6 @@ import {
   BookOpen,
   Command,
   LifeBuoy,
-  UsersRound,
   PieChart,
   Send,
   Settings2,
