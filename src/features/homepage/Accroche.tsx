@@ -1,5 +1,5 @@
 import { motion } from "framer-motion";
-// import Meteors from "@/components/ui/meteors"
+// import { PulsatingButton } from "@/components/magicui/pulsating-button";
 import SectionVideo from "./SectionVideo";
 export default function HeroSection() {
   const words = ["Créer", "vos", "formulaires", "en", "ligne"];
@@ -13,7 +13,6 @@ export default function HeroSection() {
   };
   return (
     <section className="flex flex-col items-center text-center space-y-6 py-20">
-             {/* <Meteors number={5} /> */}
       {/* Badge Announcement avec Gradient Animé */}
       <motion.div
         initial={{ opacity: 0, y: -10 }}
