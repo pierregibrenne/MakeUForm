@@ -2,7 +2,6 @@ import  { StrictMode } from 'react'
 import ReactDOM from 'react-dom/client'
 import { RouterProvider, createRouter } from '@tanstack/react-router'
 import './index.css'; // chargement du CSS
-import { ThemeProvider } from "@/components/ThemeProvider"
 import { AuthProvider } from './context/AuthContext'  // Import de AuthProvider et useAuth
 import { useAuth } from './context/useAuth'
 
