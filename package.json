@@ -9,8 +9,8 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest",
-    "clean": "rm -rf node_modules package-lock.json .turbo .next .vite dist node_modules/.cache && npm install",
-    "cleango": "rm -rf node_modules package-lock.json .turbo .next .vite dist node_modules/.cache && npm install && npm run dev"
+    "clean": "rm -rf node_modules .turbo .next .vite dist node_modules/.cache && npm install",
+    "cleango": "rm -rf node_modules .turbo .next .vite dist node_modules/.cache && npm install && npm run dev"
   },
   "dependencies": {
     "@calcom/embed-react": "^1.5.2",
