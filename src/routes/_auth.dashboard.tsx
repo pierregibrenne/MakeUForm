@@ -5,6 +5,7 @@ import { Outlet } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/_auth/dashboard')({
   component: DashboardPage,
+  // 🚨🚨🚨 Bizarre, l'auth n'est pas vérifier ici 
 })
 export function DashboardPage() {
   console.log('Rendering /_auth/dashboard')
