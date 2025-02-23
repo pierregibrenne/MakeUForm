@@ -3,7 +3,7 @@ import HeroVideoDialog from "@/components/ui/hero-video-dialog";
 
 export default function SectionVideo() {
   return (
-    <div className="relative">
+    <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
       {/* Vidéo claire */}
       <motion.div
         initial={{ opacity: 0, y: 30 }}
